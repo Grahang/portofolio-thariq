@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio Magang — Muhamad Thariq Akbar Pratama</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-from: #131b2b;
+      --bg-via: #2f4a63;
+      --bg-to: #5b91a3;
+      --stage-core: rgba(207, 234, 224, 0.24);
+      --stage-mid: rgba(47, 74, 99, 0.84);
+      --stage-edge: rgba(19, 27, 43, 0.96);
+      --blob-1: rgba(91, 145, 163, 0.42);
+      --blob-2: rgba(207, 234, 224, 0.26);
+      --blob-3: rgba(47, 74, 99, 0.48);
+      --accent-soft: rgba(207, 234, 224, 0.14);
+      --accent-border: rgba(207, 234, 224, 0.35);
+      --accent-text: #cfeae0;
+      --active-ink: #131b2b;
+      --ease-io: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, var(--bg-from), var(--bg-via), var(--bg-to));
+    }
+
+    .stage-shell {
+      background: radial-gradient(circle at 50% 45%, var(--stage-core) 0%, var(--stage-mid) 50%, var(--stage-edge) 100%);
+    }
+
+    .glass-pill {
+      background: rgba(19, 27, 43, 0.48);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(207, 234, 224, 0.18);
+      transition: transform 0.24s var(--ease-io), background-color 0.28s var(--ease-io), border-color 0.28s var(--ease-io), color 0.25s var(--ease-io);
+    }
+
+    .glass-card {
+      background: rgba(19, 27, 43, 0.34);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(207, 234, 224, 0.22);
+      transform-style: preserve-3d;
+      transition: transform 0.32s var(--ease-io), box-shadow 0.35s var(--ease-io), background-color 0.3s var(--ease-io), border-color 0.3s var(--ease-io);
+    }
+
+    /* HEADER SYMMETRICAL 3-COLUMN GRID */
+    @media (min-width: 1024px) {
+      .header-balanced {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+
+    /* MICRO-INTERACTION: TACTILE PRESS */
+    .pressable {
+      transition: transform 0.22s var(--ease-io), background-color 0.28s var(--ease-io), color 0.25s var(--ease-io), box-shadow 0.28s var(--ease-io);
+    }
+    .pressable:active {
+      transform: scale(0.96);
+    }
+
+    /* LOADING: TOP PROGRESS BAR */
+    .top-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      z-index: 30;
+      opacity: 0;
+      background: linear-gradient(90deg, #5b91a3, #cfeae0);
+      box-shadow: 0 0 12px rgba(207, 234, 224, 0.65);
+      transition: width 0.45s var(--ease-io), opacity 0.3s var(--ease-io);
+    }
+    .top-progress.is-active {
+      opacity: 1;
+      width: 100%;
+    }
+
+    /* LOADING: SKELETON SHIMMER FOR MEDIA */
+    .media-skeleton {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(
+        110deg,
+        rgba(19, 27, 43, 0.75) 25%,
+        rgba(91, 145, 163, 0.24) 50%,
+        rgba(19, 27, 43, 0.75) 75%
+      );
+      background-size: 220% 100%;
+      animation: shimmerSweep 1.6s ease-in-out infinite;
+    }
+
+    @keyframes shimmerSweep {
+      0% { background-position: 100% 0; }
+      50% { background-position: 0% 0; }
+      100% { background-position: -100% 0; }
+    }
+
+    /* HERO: AMBIENT BLOBS */
+    .ambient-blob {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(64px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .blob-a {
+      width: 290px;
+      height: 290px;
+      top: -55px;
+      left: 10%;
+      background: var(--blob-1);
+      animation: driftA 11s ease-in-out infinite alternate;
+    }
+
+    .blob-b {
+      width: 330px;
+      height: 330px;
+      bottom: -75px;
+      right: 12%;
+      background: var(--blob-2);
+      animation: driftB 13s ease-in-out infinite alternate;
+    }
+
+    .blob-c {
+      width: 230px;
+      height: 230px;
+      top: 30%;
+      right: 33%;
+      background: var(--blob-3);
+      animation: driftC 9s ease-in-out infinite alternate;
+    }
+
+    @keyframes driftA {
+      0% { transform: translate(0px, 0px) scale(1); }
+      100% { transform: translate(45px, 28px) scale(1.14); }
+    }
+
+    @keyframes driftB {
+      0% { transform: translate(0px, 0px) scale(1); }
+      100% { transform: translate(-48px, -24px) scale(1.12); }
+    }
+
+    @keyframes driftC {
+      0% { transform: translate(0px, 0px) scale(0.96); }
+      100% { transform: translate(24px, -32px) scale(1.08); }
+    }
+
+    /* PAGE / SCREEN TRANSITION: CURTAIN + STAGGER */
+    .curtain-veil {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 25;
+      opacity: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(19, 27, 43, 0.08) 0%,
+        rgba(207, 234, 224, 0.22) 48%,
+        rgba(91, 145, 163, 0.14) 100%
+      );
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transform: translateX(-100%);
+    }
+
+    .curtain-veil.is-sweeping {
+      animation: curtainSweep 0.6s ease-in-out forwards;
+    }
+
+    @keyframes curtainSweep {
+      0% {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      50% {
+        opacity: 0.95;
+        transform: translateX(0%);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    .stage-content {
+      transition: opacity 0.32s ease-in-out, transform 0.36s ease-in-out;
+    }
+
+    .stage-content.is-leaving {
+      opacity: 0;
+      transform: translateY(8px) scale(0.99);
+    }
+
+    @keyframes heroStagger {
+      0% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+      }
+    }
+
+    .stagger-item {
+      opacity: 0;
+      animation: heroStagger 0.45s ease-in-out forwards;
+    }
+
+    /* PULL TO REFRESH INDICATOR (TOUCH / MOBILE) */
+    .ptr-indicator {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translate(-50%, -72px);
+      z-index: 45;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.28s ease-in-out, opacity 0.28s ease-in-out;
+    }
+
+    .ptr-indicator.is-visible {
+      opacity: 1;
+    }
+
+    @keyframes ptrSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .ptr-spinner.is-spinning {
+      animation: ptrSpin 0.85s ease-in-out infinite;
+    }
+
+    /* TOAST FEEDBACK */
+    .toast-pill {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translate(-50%, 16px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 60;
+      transition: transform 0.32s ease-in-out, opacity 0.32s ease-in-out;
+    }
+    .toast-pill.is-shown {
+      opacity: 1;
+      transform: translate(-50%, 0px);
+    }
+
+    /* MODAL / POP-UP TRANSITION */
+    .modal-backdrop {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .modal-backdrop.is-open {
+      opacity: 1;
+    }
+
+    .modal-panel {
+      opacity: 0;
+      transform: translateY(16px) scale(0.965);
+      transition: opacity 0.32s ease-in-out, transform 0.36s ease-in-out;
+    }
+
+    .modal-backdrop.is-open .modal-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ambient-blob,
+      .curtain-veil,
+      .stagger-item,
+      .stage-content,
+      .modal-backdrop,
+      .modal-panel,
+      .media-skeleton,
+      .ptr-indicator,
+      .ptr-spinner,
+      .toast-pill,
+      .top-progress {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen p-3 md:p-6 flex items-center justify-center text-white selection:bg-[#CFEAE0] selection:text-[#131B2B]">
+
+  <!-- PULL TO REFRESH INDICATOR -->
+  <div id="ptr-indicator" class="ptr-indicator glass-pill px-4 py-2 rounded-full flex items-center gap-2.5 shadow-xl text-xs font-bold text-[#CFEAE0]">
+    <svg id="ptr-spinner" class="ptr-spinner w-4 h-4 text-[#CFEAE0]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+    </svg>
+    <span id="ptr-label">Tarik untuk menyegarkan</span>
+  </div>
+
+  <!-- TOAST FEEDBACK -->
+  <div id="toast-pill" class="toast-pill glass-pill px-4 py-2 rounded-full shadow-2xl text-xs font-bold text-[#CFEAE0]">
+    Tampilan diperbarui
+  </div>
+
+  <main class="w-full max-w-[1380px] min-h-[86vh] stage-shell rounded-[2rem] md:rounded-[2.5rem] shadow-[0_30px_80px_rgba(19,27,43,0.55)] border border-[#CFEAE0]/20 p-6 md:p-10 flex flex-col justify-between relative overflow-hidden">
+
+    <!-- LOADING PROGRESS BAR -->
+    <div id="top-progress" class="top-progress"></div>
+
+    <!-- ANIMATED AMBIENT BLOBS -->
+    <div class="ambient-blob blob-a"></div>
+    <div class="ambient-blob blob-b"></div>
+    <div class="ambient-blob blob-c"></div>
+
+    <!-- SMOOTH CURTAIN SWEEP LAYER -->
+    <div id="curtain-veil" class="curtain-veil"></div>
+
+    <!-- TOP BAR (SYMMETRICAL CENTERED PILL NAV) -->
+    <header class="header-balanced flex flex-col items-center gap-4 z-20">
+      <div class="stagger-item flex items-center gap-3 self-start lg:self-auto lg:justify-self-start min-w-0" style="animation-delay: 20ms;">
+        <div class="w-9 h-9 rounded-xl bg-[#CFEAE0] text-[#131B2B] flex items-center justify-center shadow shrink-0 transition-transform duration-300 ease-in-out hover:scale-105">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+          </svg>
+        </div>
+        <div class="leading-tight min-w-0">
+          <div class="text-xs md:text-sm font-bold tracking-wide text-white truncate">
+            Muhamad Thariq Akbar Pratama
+          </div>
+          <div class="text-[11px] font-medium tracking-wider uppercase text-[#CFEAE0]/80 truncate">
+            PT Fast Indo Talenta
+          </div>
+        </div>
+      </div>
+
+      <nav class="stagger-item glass-pill rounded-full p-1.5 flex flex-wrap items-center justify-center gap-1 shadow-lg lg:justify-self-center" style="animation-delay: 70ms;">
+        <button onclick="selectProject('sosmed')" id="tab-sosmed" class="nav-btn pressable px-3.5 py-2 rounded-full text-xs font-bold tracking-wide bg-[#CFEAE0] text-[#131B2B] shadow cursor-pointer">
+          KONTEN SOSMED
+        </button>
+        <button onclick="selectProject('jobfair')" id="tab-jobfair" class="nav-btn pressable px-3.5 py-2 rounded-full text-xs font-semibold tracking-wide text-white/80 hover:text-white cursor-pointer">
+          PANITIA JOB FAIR
+        </button>
+        <button onclick="selectProject('chatbot')" id="tab-chatbot" class="nav-btn pressable px-3.5 py-2 rounded-full text-xs font-semibold tracking-wide text-white/80 hover:text-white cursor-pointer">
+          CHATBOT FITALENTA
+        </button>
+        <button onclick="openModal('about')" class="pressable px-3.5 py-2 rounded-full text-xs font-semibold tracking-wide text-white/80 hover:text-white cursor-pointer">
+          PROFIL &amp; CV
+        </button>
+        <button onclick="openModal('maintenance')" class="pressable px-3.5 py-2 rounded-full text-xs font-semibold tracking-wide text-[#CFEAE0] hover:text-white cursor-pointer">
+          PENUTUP &amp; MAINTENANCE
+        </button>
+      </nav>
+
+      <div class="stagger-item hidden lg:flex items-center justify-end gap-2.5 lg:justify-self-end" style="animation-delay: 110ms;">
+        <a href="mailto:thariqpratama56321@gmail.com" class="pressable w-9 h-9 rounded-full glass-pill flex items-center justify-center hover:bg-[#5B91A3]/35 hover:scale-105" title="Email">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <a href="./docs/CV-Muhamad-Thariq.pdf" target="_blank" rel="noopener noreferrer" class="pressable px-3.5 h-9 rounded-full glass-pill flex items-center justify-center text-xs font-bold hover:bg-[#5B91A3]/35 hover:scale-[1.03]">
+          CV PDF
+        </a>
+      </div>
+    </header>
+
+    <!-- CENTER 3-COLUMN SHOWCASE -->
+    <section id="showcase-grid" class="stage-content grid grid-cols-1 lg:grid-cols-12 items-center gap-8 my-6 z-10">
+
+      <!-- LEFT COLUMN -->
+      <div class="lg:col-span-3 space-y-5 text-left order-2 lg:order-1">
+        <div class="stagger-item inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#131B2B]/45 border border-[#CFEAE0]/25 text-[11px] font-semibold tracking-wider uppercase" style="color: var(--accent-text); animation-delay: 60ms;">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#CFEAE0] animate-pulse"></span>
+          <span id="proj-badge">PILAR 01 &bull; DIGITAL MARKETING</span>
+        </div>
+
+        <h1 id="proj-title" class="stagger-item text-3xl md:text-4xl font-extrabold leading-[1.12] tracking-tight" style="animation-delay: 120ms;">
+          Visual &amp; Video<br>Konten Sosmed
+        </h1>
+
+        <p id="proj-desc" class="stagger-item text-sm text-white/80 leading-relaxed" style="animation-delay: 180ms;">
+          Merancang strategi konten digital, melakukan audit akun media sosial, serta memproduksi video pendek dan visual untuk mendukung branding @fitalenta.id dan @globalnext.id.
+        </p>
+
+        <div class="stagger-item pt-1 flex flex-wrap items-center gap-3" style="animation-delay: 240ms;">
+          <button onclick="openModal('case')" class="pressable group inline-flex items-center gap-2.5 bg-[#CFEAE0] text-[#131B2B] font-bold text-xs md:text-sm px-5 py-3 rounded-full shadow-lg hover:bg-white hover:scale-[1.03] cursor-pointer">
+            <span id="case-cta-label">Detail Studi Kasus</span>
+            <span class="w-5 h-5 rounded-full bg-[#131B2B] text-[#CFEAE0] flex items-center justify-center text-xs transition-transform duration-300 ease-in-out group-hover:translate-x-1">&rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CENTER COLUMN -->
+      <div class="lg:col-span-6 flex flex-col items-center justify-center order-1 lg:order-2">
+        <div id="tilt-wrapper" class="stagger-item w-full max-w-[435px]" style="animation-delay: 100ms;">
+          <div id="proj-visual" class="glass-card rounded-[2rem] p-4 md:p-5 shadow-[0_35px_60px_rgba(19,27,43,0.5)] flex flex-col justify-between relative"></div>
+        </div>
+        <div class="w-52 h-4 bg-[#131B2B]/55 blur-xl rounded-full mt-4 transition-transform duration-300 ease-in-out"></div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="lg:col-span-3 flex flex-col lg:items-end text-left lg:text-right space-y-5 order-3">
+        <div class="stagger-item" style="animation-delay: 100ms;">
+          <div id="proj-metric" class="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+            2 Brand Aktif
+          </div>
+          <div id="proj-submetric" class="text-sm font-medium text-[#CFEAE0]/80 mt-0.5">
+            @fitalenta.id &amp; @globalnext.id
+          </div>
+        </div>
+
+        <div class="stagger-item space-y-2.5" style="animation-delay: 180ms;">
+          <p class="text-xs font-medium text-white/80">
+            Pilih bukti proyek:
+          </p>
+          <div id="right-slide-buttons" class="flex items-center lg:justify-end gap-2.5"></div>
+          <p class="text-[11px] text-white/75">
+            Tombol &larr; / &rarr; geser bukti &bull; Klik gambar untuk zoom
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BOTTOM BAR -->
+    <footer class="stagger-item flex flex-col md:flex-row items-center justify-between gap-4 z-20 pt-2" style="animation-delay: 200ms;">
+      <div class="flex flex-wrap items-center gap-3 text-white/80">
+        <a href="mailto:thariqpratama56321@gmail.com" class="hover:text-[#CFEAE0] transition-colors duration-200 ease-in-out text-xs font-medium">Email</a>
+        <span>&bull;</span>
+        <a href="./docs/CV-Muhamad-Thariq.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-[#CFEAE0] transition-colors duration-200 ease-in-out text-xs font-medium">Unduh CV (PDF)</a>
+        <span>&bull;</span>
+        <button onclick="openModal('about')" class="hover:text-[#CFEAE0] transition-colors duration-200 ease-in-out text-xs font-medium cursor-pointer">Dampak &amp; Profil</button>
+        <span>&bull;</span>
+        <button onclick="openModal('maintenance')" class="hover:text-[#CFEAE0] transition-colors duration-200 ease-in-out text-xs font-medium cursor-pointer">Penutup Maintenance</button>
+      </div>
+
+      <p id="proj-tagline" class="text-xs md:text-sm font-medium text-white/90 text-center">
+        Strategi visual dan video pendek,<br class="hidden sm:inline"> dirancang untuk membangun interaksi audiens.
+      </p>
+
+      <button onclick="nextProject()" class="pressable glass-card hover:bg-[#2F4A63]/65 rounded-2xl px-4 py-2.5 flex items-center gap-3 text-left cursor-pointer group">
+        <div class="w-9 h-9 rounded-xl bg-[#5B91A3]/25 border border-[#CFEAE0]/25 flex items-center justify-center text-sm font-bold text-[#CFEAE0] transition-transform duration-300 ease-in-out group-hover:scale-105" id="next-icon">
+          02
+        </div>
+        <div>
+          <div class="text-[10px] uppercase tracking-wider text-white/65">Proyek Berikutnya</div>
+          <div id="next-title" class="text-xs font-bold text-white transition-transform duration-300 ease-in-out group-hover:translate-x-1">
+            Panitia Job Fair &rarr;
+          </div>
+        </div>
+      </button>
+    </footer>
+
+  </main>
+
+  <!-- MODAL DETAIL STUDI KASUS / PROFIL / PENUTUP MAINTENANCE -->
+  <div id="detail-modal" onclick="if(event.target === this) closeModal()" class="modal-backdrop fixed inset-0 bg-[#131B2B]/80 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+    <div class="modal-panel bg-[#131B2B]/95 border border-[#CFEAE0]/25 rounded-3xl max-w-3xl w-full p-6 md:p-8 text-white shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal()" class="pressable sticky top-0 float-right w-9 h-9 rounded-full bg-[#2F4A63]/60 hover:bg-[#5B91A3]/60 flex items-center justify-center text-sm font-bold cursor-pointer z-10">
+        &times;
+      </button>
+      <div id="modal-body" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- MODAL ZOOM BUKTI GAMBAR -->
+  <div id="zoom-modal" onclick="closeZoom()" class="modal-backdrop fixed inset-0 bg-[#131B2B]/90 backdrop-blur-md z-50 hidden items-center justify-center p-4 cursor-zoom-out">
+    <div class="modal-panel max-w-5xl w-full flex flex-col items-center gap-3" onclick="event.stopPropagation()">
+      <div class="w-full flex items-center justify-between text-white/90 text-xs md:text-sm">
+        <span id="zoom-caption" class="font-semibold"></span>
+        <button onclick="closeZoom()" class="pressable px-3.5 py-1.5 rounded-full bg-[#2F4A63]/70 hover:bg-[#5B91A3]/70 font-bold cursor-pointer">
+          Tutup &times;
+        </button>
+      </div>
+      <img id="zoom-img" src="" alt="Preview Bukti" class="max-h-[82vh] w-auto object-contain rounded-2xl border border-[#CFEAE0]/25 shadow-2xl bg-[#131B2B]" />
+    </div>
+  </div>
+
+  <script>
+    const projects = {
+      sosmed: {
+        badge: "PILAR 01 • DIGITAL MARKETING",
+        title: "Visual &amp; Video<br>Konten Sosmed",
+        desc: "Merancang strategi konten digital, melakukan audit akun media sosial, serta memproduksi video pendek dan visual untuk mendukung branding @fitalenta.id dan @globalnext.id.",
+        ctaLabel: "Detail Studi Kasus",
+        metric: "2 Brand Aktif",
+        submetric: "@fitalenta.id &amp; @globalnext.id",
+        tagline: "Strategi visual dan video pendek,<br>dirancang untuk membangun interaksi audiens.",
+        nextKey: "jobfair",
+        nextNum: "02",
+        nextLabel: "Panitia Job Fair →",
+        slides: [
+          {
+            mediaType: "video",
+            src: "videos/sosmed-reels-1.mp4",
+            shortName: "Video 01",
+            tag: "Bukti Video Konten 01",
+            heading: "Produksi Video Pendek Kampanye",
+            detail: "Editing video vertikal dengan alur visual yang ringkas dan pesan yang langsung menyasar audiens pencari kerja.",
+            chips: ["07 Nov 2026", "CapCut", "Short-Form Video"],
+            stat: "Video Dokumentasi • sosmed-reels-1.mp4"
+          },
+          {
+            mediaType: "video",
+            src: "videos/sosmed-reels-2.mp4",
+            shortName: "Video 02",
+            tag: "Bukti Video Konten 02",
+            heading: "Konten Edukasi & Informasi Program",
+            detail: "Pengemasan informasi karier dan program pelatihan menjadi video pendek yang informatif dan mudah diikuti.",
+            chips: ["12 Nov 2026", "@fitalenta.id", "@globalnext.id"],
+            stat: "Video Dokumentasi • sosmed-reels-2.mp4"
+          },
+          {
+            mediaType: "summary",
+            shortName: "Strategi & Audit",
+            tag: "Perencanaan & Copywriting",
+            heading: "Audit Akun, Content Plan & Copywriting",
+            detail: "Melakukan audit tampilan akun, menyusun pilar konten mingguan, serta menulis copywriting caption yang selaras dengan identitas @fitalenta.id dan @globalnext.id.",
+            chips: ["Audit Sosmed", "Content Plan", "Caption Copywriting"],
+            stat: "Peran Digital Content & Marketing"
+          }
+        ],
+        caseStudy: {
+          subtitle: "Studi Kasus • Digital Marketing & Konten Sosial Media",
+          heading: "Produksi Konten & Penguatan Branding @fitalenta.id dan @globalnext.id",
+          problem: "Dibutuhkan produksi konten visual dan video pendek yang konsisten serta relevan dengan audiens pencari kerja untuk meningkatkan daya tarik informasi program dan lowongan.",
+          action: "Melakukan audit sosial media awal, menyusun alur perencanaan konten, memproduksi video pendek menggunakan CapCut, serta merancang copywriting yang terstruktur.",
+          result: "Menghasilkan aset video siap tayang yang memperkuat identitas digital kedua akun selama periode magang Oktober–November 2026.",
+          impactSummary: "2 akun brand aktif (@fitalenta.id & @globalnext.id) didukung audit akun, alur konten terstruktur, dan video pendek siap publikasi.",
+          highlights: [
+            "Audit tampilan dan komunikasi visual akun @fitalenta.id & @globalnext.id",
+            "Produksi & editing video pendek vertikal (2 video dokumentasi)",
+            "Penyusunan copywriting dan alur pesan yang ringkas dan persuasif"
+          ],
+          gallery: [
+            { type: "video", src: "videos/sosmed-reels-1.mp4", caption: "Bukti Video Konten #1 (07 Nov 2026)" },
+            { type: "video", src: "videos/sosmed-reels-2.mp4", caption: "Bukti Video Konten #2 (12 Nov 2026)" }
+          ]
+        }
+      },
+      jobfair: {
+        badge: "PILAR 02 • EVENT OPERATIONS",
+        title: "Kepanitiaan &amp;<br>Operasional Job Fair",
+        desc: "Terlibat langsung dalam tim kepanitiaan Job Fair—membantu koordinasi lapangan, alur kegiatan peserta, serta kelancaran operasional acara bursa kerja.",
+        ctaLabel: "Detail Studi Kasus",
+        metric: "On-Site Ops",
+        submetric: "Koordinasi Tim & Peserta",
+        tagline: "Eksekusi lapangan yang sigap,<br>menghubungkan talenta dan perusahaan.",
+        nextKey: "chatbot",
+        nextNum: "03",
+        nextLabel: "Chatbot Fitalenta →",
+        slides: [
+          {
+            mediaType: "image",
+            src: "images/jobfair-1.jpg",
+            shortName: "Dokumentasi 01",
+            tag: "Bukti Lapangan 01",
+            heading: "Koordinasi Operasional & Area Event",
+            detail: "Mendukung kesiapan area acara dan memastikan koordinasi antar-panitia berjalan tertib sesuai kebutuhan lapangan.",
+            chips: ["11 Nov 2026", "On-Site Ops", "Panitia Job Fair"],
+            stat: "Foto Lapangan • jobfair-1.jpg"
+          },
+          {
+            mediaType: "image",
+            src: "images/jobfair-2.jpg",
+            shortName: "Dokumentasi 02",
+            tag: "Bukti Lapangan 02",
+            heading: "Pendampingan Alur & Aktivitas Peserta",
+            detail: "Membantu kelancaran aktivitas peserta di lokasi acara serta mendukung koordinasi teknis selama kegiatan berlangsung.",
+            chips: ["Alur Peserta", "Koordinasi Lapangan", "Dokumentasi"],
+            stat: "Foto Lapangan • jobfair-2.jpg"
+          },
+          {
+            mediaType: "summary",
+            shortName: "Alur & Evaluasi",
+            tag: "Operasional Kepanitiaan",
+            heading: "Koordinasi Alur Acara & Evaluasi Tim",
+            detail: "Membantu menjaga ketertiban alur kegiatan peserta, berkoordinasi cepat saat ada kendala di lokasi, dan mendokumentasikan jalannya acara.",
+            chips: ["Rundown & Alur", "Problem Solving", "Dokumentasi Event"],
+            stat: "Peran Operasional Kepanitiaan Job Fair"
+          }
+        ],
+        caseStudy: {
+          subtitle: "Studi Kasus • Kepanitiaan Job Fair",
+          heading: "Koordinasi Operasional & Kelancaran Pelaksanaan Job Fair",
+          problem: "Pelaksanaan Job Fair membutuhkan koordinasi lapangan yang rapi agar alur peserta, komunikasi panitia, dan jadwal acara berjalan tanpa hambatan.",
+          action: "Berperan aktif sebagai bagian dari panitia pelaksana dalam mengatur alur kegiatan di lokasi, membantu koordinasi antar-anggota tim, serta mendokumentasikan jalannya acara.",
+          result: "Kegiatan berlangsung tertib sesuai jadwal dengan koordinasi tim yang responsif di lapangan.",
+          impactSummary: "Alur peserta dan koordinasi tim di lokasi berjalan tertib dengan dokumentasi acara yang terdokumentasi rapi.",
+          highlights: [
+            "Koordinasi langsung di lapangan selama pelaksanaan Job Fair",
+            "Membantu kelancaran alur peserta dan kesiapan operasional acara",
+            "Dokumentasi aktivitas lapangan untuk laporan dan evaluasi tim"
+          ],
+          gallery: [
+            { type: "image", src: "images/jobfair-1.jpg", caption: "Dokumentasi Lapangan Panitia Job Fair #1" },
+            { type: "image", src: "images/jobfair-2.jpg", caption: "Dokumentasi Lapangan Panitia Job Fair #2" }
+          ]
+        }
+      },
+      chatbot: {
+        badge: "PILAR 03 • AI & AUTOMATION",
+        title: "AI Assistant<br>Chatbot Fitalenta",
+        desc: "Merancang asisten virtual WhatsApp berbasis AI yang terhubung ke 13 tab database operasional DB_Fitalenta_V2—lengkap dengan konfirmasi YA/BATAL, audit log, serta perencanaan maintenance berkala.",
+        ctaLabel: "Studi Kasus & Maintenance",
+        metric: "13 Tab DB",
+        submetric: "AI + Schema Map + Maintenance",
+        tagline: "Otomatisasi operasional berbasis AI,<br>dengan tata kelola data dan perawatan berkelanjutan.",
+        nextKey: "sosmed",
+        nextNum: "01",
+        nextLabel: "Konten Sosmed →",
+        slides: [
+          {
+            mediaType: "image",
+            src: "images/chatbot-db.png",
+            shortName: "Database Sheets",
+            tag: "Bukti 01 • Database 13 Tab",
+            heading: "Struktur DB_Fitalenta_V2 & Bot_Schema_Map",
+            detail: "Mengelola 13 tab operasional (Leads, Peserta, Kandidat Jepang, Sekolah, Kampus, Job, Mitra, hingga Riwayat Perubahan & Archive_Deleted) melalui aturan Bot_Schema_Map.",
+            chips: ["13 Tab Aktif", "Bot_Schema_Map", "DB_Fitalenta_V2"],
+            stat: "Bukti Database • chatbot-db.png"
+          },
+          {
+            mediaType: "image",
+            src: "images/chatbot-workflow.png",
+            shortName: "SS Workflow",
+            tag: "Bukti 02 • Arsitektur & Fail-Safe",
+            heading: "Workflow n8n, Routing Bahasa & Fail-Safe",
+            detail: "Memahami bahasa formal maupun santai untuk cari, rekap, tambah, dan update data—dilengkapi jalur fail-safe agar sistem berhenti aman tanpa merusak data saat koneksi terkendala.",
+            chips: ["n8n Workflow", "Bahasa Formal/Santai", "Fail-Safe Guard"],
+            stat: "Bukti Workflow • chatbot-workflow.png"
+          },
+          {
+            mediaType: "image",
+            src: "images/chatbot-wa.png",
+            shortName: "Bukti Chatbot WA",
+            tag: "Bukti 03 • Konfirmasi & Audit Log",
+            heading: "Konfirmasi YA/BATAL, ID CHG & Maintenance",
+            detail: "Setiap aksi tulis menampilkan pratinjau dengan kode konfirmasi YA/BATAL sebelum disimpan ke sheet, dan memerlukan perawatan berkala agar tetap sinkron dengan perubahan kolom tim.",
+            chips: ["Konfirmasi YA/BATAL", "Audit Log CHG", "Maintenance Ready"],
+            stat: "Bukti Chatbot • chatbot-wa.png"
+          }
+        ],
+        caseStudy: {
+          subtitle: "Studi Kasus • AI Assistant Fitalenta & Keberlanjutan Sistem",
+          heading: "Otomatisasi 13 Tab DB_Fitalenta_V2 & Urgensi Maintenance Berkala",
+          problem: "Tim operasional mengelola 13 tab aktif setiap hari (mulai dari 1_Leads_Masuk, 2_Peserta_Daftar, 3_Rekap_Peserta_Japan, hingga 8_Data_Job_Masuk). Pembaruan manual di tengah ritme padat rawan memakan waktu, salah kolom, dan sulit dilacak riwayat perubahannya.",
+          action: "Membangun Chatbot Fita berbasis n8n dan Bot_Schema_Map yang memahami perintah bahasa formal maupun santai, dilengkapi pratinjau konfirmasi YA/BATAL, validasi anti-duplikasi, jalur fail-safe saat gangguan koneksi, serta pencatatan otomatis di Riwayat Perubahan dan Archive_Deleted.",
+          result: "Teruji lintas skenario bahasa formal, santai, maupun uji negatif—dengan pembersihan data simulasi ([TEST]) dan dokumentasi handover akhir magang agar siap digunakan tim operasional.",
+          impactSummary: "13 tab operasional terpetakan dalam Bot_Schema_Map dengan pratinjau konfirmasi YA/BATAL, fail-safe aman, audit log, dan handover siap pakai.",
+          highlights: [
+            "Terintegrasi dengan 13 tab operasional DB_Fitalenta_V2 melalui single source of truth Bot_Schema_Map",
+            "Lapisan pengaman: pratinjau konfirmasi YA/BATAL, fail-safe tanpa mengubah data saat error, serta audit log & soft delete",
+            "Handover akhir magang mencakup panduan penggunaan bot, dokumentasi 13 tab, dan kesiapan operasional"
+          ],
+          maintenanceReasons: [
+            {
+              title: "Dinamika Perubahan Struktur Spreadsheet",
+              desc: "Penambahan kolom, tab baru, atau pembaruan opsi dropdown pada DB_Fitalenta_V2 perlu disinkronkan secara berkala di workflow dan Bot_Schema_Map agar bot tidak meleset kolom."
+            },
+            {
+              title: "Stabilitas Konektor & Mekanisme Pengaman",
+              desc: "Pemantauan rutin memastikan koneksi Google Sheets, izin akses file, dan jalur fail-safe tetap berjalan stabil tanpa mengganggu alur kerja harian."
+            },
+            {
+              title: "Penyesuaian Pola Bahasa & Kebutuhan Tim",
+              desc: "Seiring berkembangnya kebutuhan lapangan, aturan validasi, prompt, dan alur konfirmasi perlu disesuaikan agar tetap akurat merespons bahasa formal maupun santai."
+            },
+            {
+              title: "Tim Internal Tetap Fokus pada Operasional Utama",
+              desc: "Perawatan berkelanjutan pasca-magang menjaga sistem tetap optimal tanpa membebani tim operasional dengan urusan teknis di balik layar."
+            }
+          ],
+          gallery: [
+            { type: "image", src: "images/chatbot-db.png", caption: "Struktur Database Operasional (DB_Fitalenta_V2)" },
+            { type: "image", src: "images/chatbot-workflow.png", caption: "Arsitektur Workflow n8n & Jalur Validasi Chatbot Fita" },
+            { type: "image", src: "images/chatbot-wa.png", caption: "Pratinjau Konfirmasi YA/BATAL & Pencatatan ID Perubahan" }
+          ]
+        }
+      }
+    };
+
+    let currentProject = 'sosmed';
+    let currentSlide = 0;
+    let isTransitioning = false;
+
+    function runProgressBar() {
+      const bar = document.getElementById('top-progress');
+      bar.classList.remove('is-active');
+      bar.style.width = '0%';
+      bar.offsetHeight;
+      bar.classList.add('is-active');
+      setTimeout(() => {
+        bar.classList.remove('is-active');
+        bar.style.width = '0%';
+      }, 620);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-pill');
+      toast.innerText = msg;
+      toast.classList.add('is-shown');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        toast.classList.remove('is-shown');
+      }, 1900);
+    }
+
+    function triggerStagger() {
+      const items = document.querySelectorAll('.stagger-item');
+      items.forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = '';
+      });
+    }
+
+    function playCurtain(onSwap) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      runProgressBar();
+
+      const veil = document.getElementById('curtain-veil');
+      const grid = document.getElementById('showcase-grid');
+
+      veil.classList.remove('is-sweeping');
+      veil.offsetHeight;
+      veil.classList.add('is-sweeping');
+
+      grid.classList.add('is-leaving');
+
+      setTimeout(() => {
+        onSwap();
+        grid.classList.remove('is-leaving');
+        triggerStagger();
+      }, 260);
+
+      setTimeout(() => {
+        veil.classList.remove('is-sweeping');
+        isTransitioning = false;
+      }, 620);
+    }
+
+    function applyProjectData(key) {
+      currentProject = key;
+      currentSlide = 0;
+      const data = projects[key];
+
+      document.getElementById('proj-badge').innerText = data.badge;
+      document.getElementById('proj-title').innerHTML = data.title;
+      document.getElementById('proj-desc').innerText = data.desc;
+      document.getElementById('case-cta-label').innerText = data.ctaLabel || "Detail Studi Kasus";
+      document.getElementById('proj-metric').innerText = data.metric;
+      document.getElementById('proj-submetric').innerHTML = data.submetric;
+      document.getElementById('proj-tagline').innerHTML = data.tagline;
+      document.getElementById('next-icon').innerText = data.nextNum;
+      document.getElementById('next-title').innerText = data.nextLabel;
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('bg-[#CFEAE0]', 'text-[#131B2B]', 'font-bold', 'shadow');
+        btn.classList.add('text-white/80', 'font-semibold');
+      });
+      const activeTab = document.getElementById(`tab-${key}`);
+      if (activeTab) {
+        activeTab.classList.add('bg-[#CFEAE0]', 'text-[#131B2B]', 'font-bold', 'shadow');
+        activeTab.classList.remove('text-white/80', 'font-semibold');
+      }
+
+      renderSlide();
+    }
+
+    function selectProject(key) {
+      if (key === currentProject) return;
+      playCurtain(() => applyProjectData(key));
+    }
+
+    function selectSlide(index) {
+      if (index === currentSlide) return;
+      currentSlide = index;
+      runProgressBar();
+      renderSlide();
+      triggerStagger();
+    }
+
+    function showMediaFallback(container, label, filePath) {
+      container.classList.remove('media-skeleton');
+      container.classList.remove('cursor-zoom-in');
+      container.onclick = null;
+      container.innerHTML = `
+        <div class="w-full h-full flex flex-col items-center justify-center text-center p-4 gap-2">
+          <div class="w-10 h-10 rounded-xl bg-[#2F4A63]/70 border border-[#CFEAE0]/25 flex items-center justify-center text-[#CFEAE0]">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="text-xs font-bold text-[#CFEAE0]">${label}</div>
+          <div class="text-[11px] text-white/65">Pastikan file <code class="text-[#CFEAE0]/90">${filePath}</code> tersedia di folder proyek</div>
+        </div>
+      `;
+    }
+
+    function bindMediaSkeleton(container, mediaEl, fallbackLabel, filePath) {
+      const finish = () => container.classList.remove('media-skeleton');
+      if (mediaEl.tagName === 'IMG') {
+        if (mediaEl.complete && mediaEl.naturalWidth > 0) finish();
+        else if (mediaEl.complete && mediaEl.naturalWidth === 0) showMediaFallback(container, fallbackLabel, filePath);
+        else {
+          mediaEl.addEventListener('load', finish, { once: true });
+          mediaEl.addEventListener('error', () => showMediaFallback(container, fallbackLabel, filePath), { once: true });
+        }
+      } else if (mediaEl.tagName === 'VIDEO') {
+        if (mediaEl.readyState >= 2) finish();
+        else {
+          mediaEl.addEventListener('loadeddata', finish, { once: true });
+          mediaEl.addEventListener('error', () => showMediaFallback(container, fallbackLabel, filePath), { once: true });
+        }
+      }
+    }
+
+    function renderSlide() {
+      const proj = projects[currentProject];
+      const slide = proj.slides[currentSlide];
+      const visualBox = document.getElementById('proj-visual');
+      const rightButtonsBox = document.getElementById('right-slide-buttons');
+
+      rightButtonsBox.innerHTML = proj.slides.map((s, i) => {
+        const activeClass = i === currentSlide
+          ? 'bg-[#CFEAE0] text-[#131B2B] shadow-md scale-105'
+          : 'glass-pill text-white/80 hover:text-white hover:scale-105';
+        return `
+          <button onclick="selectSlide(${i})" title="${s.shortName}" class="pressable w-10 h-10 rounded-full text-xs font-bold cursor-pointer ${activeClass}">
+            0${i + 1}
+          </button>
+        `;
+      }).join('');
+
+      let mediaHtml = '';
+      if (slide.mediaType === 'image') {
+        mediaHtml = `
+          <div id="media-frame" onclick="openZoom('${slide.src}', '${slide.heading}')" class="stagger-item media-skeleton w-full h-56 md:h-60 rounded-2xl border border-[#CFEAE0]/15 bg-[#131B2B]/70 flex items-center justify-center overflow-hidden cursor-zoom-in group relative" style="animation-delay: 50ms;">
+            <img src="${slide.src}" alt="${slide.heading}" class="w-full h-full object-contain p-1 transition-transform duration-300 ease-in-out group-hover:scale-[1.03]" />
+            <span class="pressable absolute bottom-2 right-2 text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#131B2B]/85 border border-[#CFEAE0]/20" style="color: var(--accent-text);">
+              Klik Zoom
+            </span>
+          </div>
+        `;
+      } else if (slide.mediaType === 'video') {
+        mediaHtml = `
+          <div id="media-frame" class="stagger-item media-skeleton w-full h-56 md:h-60 rounded-2xl border border-[#CFEAE0]/15 bg-[#131B2B]/75 overflow-hidden" style="animation-delay: 50ms;">
+            <video src="${slide.src}" controls muted playsinline class="w-full h-full object-contain"></video>
+          </div>
+        `;
+      } else {
+        mediaHtml = `
+          <div class="stagger-item w-full py-5 px-4 rounded-2xl border border-[#CFEAE0]/15 bg-[#131B2B]/40 flex items-center gap-3.5 transition-colors duration-300 ease-in-out hover:bg-[#2F4A63]/35" style="animation-delay: 50ms;">
+            <div class="w-11 h-11 rounded-2xl bg-[#CFEAE0] text-[#131B2B] font-extrabold flex items-center justify-center text-base shadow-lg shrink-0 transition-transform duration-300 ease-in-out">
+              0${currentSlide + 1}
+            </div>
+            <div>
+              <div class="text-[11px] font-bold uppercase tracking-wider" style="color: var(--accent-text);">${slide.shortName}</div>
+              <div class="text-xs text-white/80">Ringkasan peran &amp; alur kerja pada pilar ini</div>
+            </div>
+          </div>
+        `;
+      }
+
+      const miniTabsHtml = proj.slides.map((s, idx) => {
+        const active = idx === currentSlide
+          ? 'bg-[#CFEAE0] text-[#131B2B] font-bold shadow-sm'
+          : 'bg-[#131B2B]/35 text-white/80 hover:bg-[#2F4A63]/60';
+        return `
+          <button onclick="selectSlide(${idx})" class="pressable flex-1 py-1.5 px-2 rounded-xl text-[11px] cursor-pointer truncate ${active}">
+            0${idx + 1}. ${s.shortName}
+          </button>
+        `;
+      }).join('');
+
+      const chipsHtml = (slide.chips || [])
+        .map(c => `<span class="text-[10px] font-semibold px-2.5 py-0.5 rounded-full border transition-colors duration-200 ease-in-out hover:bg-[#CFEAE0]/20" style="background: var(--accent-soft); border-color: var(--accent-border); color: var(--accent-text);">${c}</span>`)
+        .join('');
+
+      const totalSlides = String(proj.slides.length).padStart(2, '0');
+
+      visualBox.innerHTML = `
+        <div class="flex items-center justify-between border-b border-[#CFEAE0]/15 pb-2.5 mb-3">
+          <span class="text-[11px] font-bold uppercase tracking-wider" style="color: var(--accent-text);">${slide.tag}</span>
+          <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#2F4A63]/65">0${currentSlide + 1} / ${totalSlides}</span>
+        </div>
+
+        <div class="space-y-3 text-left">
+          ${mediaHtml}
+
+          <div class="stagger-item flex gap-1.5" style="animation-delay: 110ms;">${miniTabsHtml}</div>
+
+          <div class="stagger-item" style="animation-delay: 160ms;">
+            <h3 class="text-lg font-bold leading-snug text-white">
+              ${slide.heading}
+            </h3>
+            <p class="text-xs text-white/80 leading-relaxed mt-1">
+              ${slide.detail}
+            </p>
+          </div>
+
+          <div class="stagger-item flex flex-wrap gap-1.5" style="animation-delay: 210ms;">${chipsHtml}</div>
+        </div>
+
+        <div class="bg-[#131B2B]/45 border border-[#CFEAE0]/15 rounded-2xl px-3.5 py-2.5 mt-3 flex items-center justify-between">
+          <span class="text-[11px] font-semibold truncate" style="color: var(--accent-text);">${slide.stat}</span>
+          <button onclick="openModal('case')" class="pressable text-[11px] font-bold text-white underline hover:opacity-80 ml-2 shrink-0 cursor-pointer">
+            Detail
+          </button>
+        </div>
+      `;
+
+      const frame = document.getElementById('media-frame');
+      const mediaEl = frame ? frame.querySelector('img, video') : null;
+      if (frame && mediaEl) bindMediaSkeleton(frame, mediaEl, slide.heading, slide.src);
+    }
+
+    // HOVER 3D TILT
+    const tiltWrap = document.getElementById('tilt-wrapper');
+    const visualCard = document.getElementById('proj-visual');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      tiltWrap.addEventListener('mousemove', (e) => {
+        const rect = tiltWrap.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const rotY = x * 8;
+        const rotX = -y * 8;
+        visualCard.style.transform = `perspective(900px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-4px)`;
+      });
+      tiltWrap.addEventListener('mouseleave', () => {
+        visualCard.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    }
+
+    // PULL-TO-REFRESH (TOUCH / MOBILE AT TOP OF PAGE)
+    (() => {
+      const ptrEl = document.getElementById('ptr-indicator');
+      const ptrSpinner = document.getElementById('ptr-spinner');
+      const ptrLabel = document.getElementById('ptr-label');
+      let startY = 0;
+      let pulling = false;
+      let pullDistance = 0;
+      const threshold = 76;
+
+      window.addEventListener('touchstart', (e) => {
+        if (window.scrollY <= 2 && e.touches.length === 1) {
+          startY = e.touches[0].clientY;
+          pulling = true;
+          pullDistance = 0;
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchmove', (e) => {
+        if (!pulling) return;
+        const currentY = e.touches[0].clientY;
+        pullDistance = Math.max(0, currentY - startY);
+        if (pullDistance > 8 && window.scrollY <= 2) {
+          const offset = Math.min(68, pullDistance * 0.45);
+          ptrEl.classList.add('is-visible');
+          ptrEl.style.transform = `translate(-50%, ${offset - 44}px)`;
+          ptrSpinner.style.transform = `rotate(${Math.min(240, pullDistance * 2.2)}deg)`;
+          ptrLabel.innerText = pullDistance >= threshold ? 'Lepas untuk menyegarkan' : 'Tarik untuk menyegarkan';
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => {
+        if (!pulling) return;
+        pulling = false;
+        if (pullDistance >= threshold && window.scrollY <= 2) {
+          ptrLabel.innerText = 'Menyegarkan...';
+          ptrSpinner.classList.add('is-spinning');
+          ptrEl.style.transform = 'translate(-50%, 10px)';
+          runProgressBar();
+
+          setTimeout(() => {
+            renderSlide();
+            triggerStagger();
+            ptrSpinner.classList.remove('is-spinning');
+            ptrEl.classList.remove('is-visible');
+            ptrEl.style.transform = 'translate(-50%, -72px)';
+            showToast('Tampilan diperbarui');
+          }, 550);
+        } else {
+          ptrEl.classList.remove('is-visible');
+          ptrEl.style.transform = 'translate(-50%, -72px)';
+        }
+        pullDistance = 0;
+      });
+    })();
+
+    // KEYBOARD NAVIGATION (ArrowLeft / ArrowRight / Alt+Arrow / Escape)
+    document.addEventListener('keydown', (e) => {
+      const detailOpen = !document.getElementById('detail-modal').classList.contains('hidden');
+      const zoomOpen = !document.getElementById('zoom-modal').classList.contains('hidden');
+
+      if (e.key === 'Escape') {
+        if (zoomOpen) {
+          closeZoom();
+          showToast('Preview ditutup');
+        } else if (detailOpen) {
+          closeModal();
+          showToast('Panel ditutup');
+        }
+        return;
+      }
+
+      if (detailOpen || zoomOpen) return;
+
+      const totalSlides = projects[currentProject].slides.length;
+      if (e.altKey && e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextProject();
+        showToast('Pindah ke pilar berikutnya');
+      } else if (e.altKey && e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const keys = Object.keys(projects);
+        const prevIdx = (keys.indexOf(currentProject) - 1 + keys.length) % keys.length;
+        selectProject(keys[prevIdx]);
+        showToast('Kembali ke pilar sebelumnya');
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const nextIdx = (currentSlide + 1) % totalSlides;
+        selectSlide(nextIdx);
+        showToast(`Bukti 0${nextIdx + 1} / 0${totalSlides}`);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const prevIdx = (currentSlide - 1 + totalSlides) % totalSlides;
+        selectSlide(prevIdx);
+        showToast(`Bukti 0${prevIdx + 1} / 0${totalSlides}`);
+      }
+    });
+
+    function showAnimatedModal(el) {
+      runProgressBar();
+      el.classList.remove('hidden');
+      el.classList.add('flex');
+      el.offsetHeight;
+      el.classList.add('is-open');
+    }
+
+    function hideAnimatedModal(el) {
+      el.classList.remove('is-open');
+      setTimeout(() => {
+        if (!el.classList.contains('is-open')) {
+          el.classList.remove('flex');
+          el.classList.add('hidden');
+        }
+      }, 340);
+    }
+
+    function openZoom(src, caption) {
+      document.getElementById('zoom-img').src = src;
+      document.getElementById('zoom-caption').innerText = caption;
+      showAnimatedModal(document.getElementById('zoom-modal'));
+    }
+
+    function closeZoom() {
+      hideAnimatedModal(document.getElementById('zoom-modal'));
+    }
+
+    function nextProject() {
+      selectProject(projects[currentProject].nextKey);
+    }
+
+    function openModal(type) {
+      const modal = document.getElementById('detail-modal');
+      const body = document.getElementById('modal-body');
+
+      if (type === 'case') {
+        const cs = projects[currentProject].caseStudy;
+        const highlightsHtml = (cs.highlights || [])
+          .map(item => `<li class="flex items-start gap-2"><span class="font-bold" style="color: var(--accent-text);">&bull;</span><span>${item}</span></li>`)
+          .join('');
+
+        const maintenanceHtml = (cs.maintenanceReasons && cs.maintenanceReasons.length)
+          ? `
+            <div class="p-4 rounded-2xl bg-[#2F4A63]/35 border border-[#CFEAE0]/30 space-y-3">
+              <div>
+                <div class="text-[11px] font-bold uppercase tracking-wider" style="color: var(--accent-text);">Keberlanjutan Sistem Pasca-Magang</div>
+                <div class="text-base font-extrabold text-white mt-0.5">Mengapa Maintenance Berkala Sangat Diperlukan?</div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                ${cs.maintenanceReasons.map((m, i) => `
+                  <div class="p-3 rounded-xl bg-[#131B2B]/55 border border-[#CFEAE0]/15">
+                    <div class="font-bold mb-1" style="color: var(--accent-text);">0${i + 1}. ${m.title}</div>
+                    <p class="text-white/80 leading-relaxed">${m.desc}</p>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#CFEAE0]/15">
+                <p class="text-xs text-white/80 leading-relaxed max-w-xl">
+                  Melalui dokumentasi <strong>13 tab DB_Fitalenta_V2</strong>, aturan <strong>Bot_Schema_Map</strong>, serta perawatan berkala, sistem tetap akurat untuk operasional jangka panjang.
+                </p>
+                <button onclick="openModal('maintenance')" class="pressable text-xs font-bold px-3.5 py-2 rounded-full bg-[#CFEAE0] text-[#131B2B] hover:bg-white cursor-pointer">
+                  Buka Penutup Maintenance
+                </button>
+              </div>
+            </div>
+          `
+          : '';
+
+        const galleryHtml = (cs.gallery || [])
+          .map(g => {
+            const media = g.type === 'video'
+              ? `<video src="${g.src}" controls class="w-full h-52 object-contain bg-[#131B2B]"></video>`
+              : `<img onclick="openZoom('${g.src}', '${g.caption}')" src="${g.src}" alt="${g.caption}" class="w-full h-52 object-contain bg-[#131B2B]/65 p-1 cursor-zoom-in transition-transform duration-300 ease-in-out hover:scale-[1.02]" />`;
+            return `
+              <figure class="rounded-2xl overflow-hidden bg-[#131B2B]/55 border border-[#CFEAE0]/15">
+                ${media}
+                <figcaption class="p-2.5 text-[11px] text-white/80">${g.caption}</figcaption>
+              </figure>
+            `;
+          })
+          .join('');
+
+        body.innerHTML = `
+          <div class="text-xs font-bold uppercase tracking-wider" style="color: var(--accent-text);">${cs.subtitle}</div>
+          <h2 class="text-2xl font-extrabold pr-8">${cs.heading}</h2>
+          <div class="p-3.5 rounded-2xl bg-[#CFEAE0]/12 border border-[#CFEAE0]/30 text-xs text-[#CFEAE0]">
+            <span class="font-extrabold uppercase tracking-wider mr-1.5">Ringkasan Dampak:</span>
+            <span class="text-white/90">${cs.impactSummary || cs.result}</span>
+          </div>
+          <div class="space-y-3 pt-1 text-sm text-white/85 leading-relaxed">
+            <div class="p-4 rounded-2xl bg-[#2F4A63]/25 border border-[#CFEAE0]/15">
+              <div class="font-bold mb-1" style="color: var(--accent-text);">1. Konteks &amp; Tantangan</div>
+              <p>${cs.problem}</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-[#2F4A63]/25 border border-[#CFEAE0]/15">
+              <div class="font-bold mb-1" style="color: var(--accent-text);">2. Eksekusi &amp; Pendekatan</div>
+              <p>${cs.action}</p>
+              ${highlightsHtml ? `<ul class="mt-2.5 space-y-1 text-xs text-white/80">${highlightsHtml}</ul>` : ''}
+            </div>
+            <div class="p-4 rounded-2xl bg-[#2F4A63]/25 border border-[#CFEAE0]/15">
+              <div class="font-bold mb-1" style="color: var(--accent-text);">3. Hasil &amp; Dampak</div>
+              <p>${cs.result}</p>
+            </div>
+            ${maintenanceHtml}
+            ${galleryHtml ? `
+              <div class="pt-1">
+                <div class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--accent-text);">Dokumentasi Proyek</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${galleryHtml}</div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      } else if (type === 'maintenance') {
+        body.innerHTML = `
+          <div class="text-xs font-bold uppercase tracking-wider" style="color: var(--accent-text);">Halaman Penutup &bull; Keberlanjutan Sistem</div>
+          <h2 class="text-2xl font-extrabold pr-8">Rencana Maintenance Berkala &amp; Handover</h2>
+          <p class="text-sm text-white/80 leading-relaxed">
+            Terima kasih atas kesempatan magang di <strong>PT Fast Indo Talenta</strong> (28 Oktober – 24 November 2026). Agar <strong>Chatbot Fitalenta</strong> dan <strong>DB_Fitalenta_V2</strong> tetap akurat dan aman digunakan tim operasional setelah masa magang berakhir, perawatan berkala sangat disarankan.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
+            <div class="p-3.5 rounded-2xl bg-[#2F4A63]/25 border border-[#CFEAE0]/15">
+              <div class="font-bold mb-1" style="color: var(--accent-text);">01. Sinkronisasi Kolom &amp; Tab</div>
+              <p class="text-white/80 leading-relaxed">Menyesuaikan workflow n8n dan <strong>Bot_Schema_Map</strong> setiap ada penambahan kolom, tab baru, atau perubahan opsi pada 13 tab spreadsheet.</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-[#2F4A63]/25 border border-[#CFEAE0]/15">
+              <div class="font-bold mb-1" style="color: var(--accent-text);">02. Pemantauan Fail-Safe &amp; Akses</div>
+              <p class="text-white/80 leading-relaxed">Memeriksa konektivitas Google Sheets, izin akses, serta jalur fail-safe agar konfirmasi <strong>YA/BATAL</strong> dan audit log tetap berjalan aman.</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-[#2F4A63]/25 border border-[#CFEAE0]/15">
+              <div class="font-bold mb-1" style="color: var(--accent-text);">03. Penyempurnaan Prompt &amp; Validasi</div>
+              <p class="text-white/80 leading-relaxed">Menyelaraskan aturan pemahaman bahasa formal maupun santai serta pencegahan duplikasi mengikuti pola kerja tim di lapangan.</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-[#2F4A63]/25 border border-[#CFEAE0]/15">
+              <div class="font-bold mb-1" style="color: var(--accent-text);">04. Fokus Tim Operasional</div>
+              <p class="text-white/80 leading-relaxed">Membantu menjaga stabilitas teknis di balik layar sehingga tim internal dapat fokus melayani peserta, mitra, dan proses rekrutmen.</p>
+            </div>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#CFEAE0]/12 border border-[#CFEAE0]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="text-xs text-white/90">
+              <div class="font-bold text-[#CFEAE0]">Siap Mendukung Dokumentasi &amp; Perawatan Lanjutan</div>
+              <div class="text-white/75 mt-0.5">Hubungi untuk diskusi handover, penyesuaian sistem, atau peluang kolaborasi berikutnya.</div>
+            </div>
+            <div class="flex flex-wrap gap-2 shrink-0">
+              <a href="mailto:thariqpratama56321@gmail.com" class="pressable bg-[#CFEAE0] text-[#131B2B] font-bold text-xs px-4 py-2.5 rounded-full hover:bg-white">
+                Hubungi via Email
+              </a>
+              <a href="./docs/CV-Muhamad-Thariq.pdf" target="_blank" rel="noopener noreferrer" class="pressable glass-pill text-white font-bold text-xs px-4 py-2.5 rounded-full hover:bg-[#5B91A3]/35">
+                Unduh CV
+              </a>
+            </div>
+          </div>
+        `;
+      } else {
+        body.innerHTML = `
+          <div class="text-xs font-bold uppercase tracking-wider" style="color: var(--accent-text);">Profil, Ringkasan Dampak &amp; Pengalaman</div>
+          <h2 class="text-2xl font-extrabold pr-8">Muhamad Thariq Akbar Pratama</h2>
+          <p class="text-sm text-white/80 leading-relaxed">
+            Intern Digital Marketing, Event Operations &amp; AI Automation di <strong>PT Fast Indo Talenta</strong> (28 Oktober – 24 November 2026) serta AI Evaluator &amp; Data Labeler di <strong>DataAnnotation.tech</strong>.
+          </p>
+
+          <div class="p-4 rounded-2xl bg-[#CFEAE0]/12 border border-[#CFEAE0]/30 space-y-2">
+            <div class="text-[11px] font-bold uppercase tracking-wider" style="color: var(--accent-text);">Ringkasan Dampak Selama Magang</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+              <div class="p-3 rounded-xl bg-[#131B2B]/55 border border-[#CFEAE0]/15">
+                <div class="font-extrabold text-white text-sm">2 Brand Aktif</div>
+                <p class="text-white/80 mt-0.5">Audit akun, content plan, copywriting, dan produksi video pendek untuk @fitalenta.id &amp; @globalnext.id.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-[#131B2B]/55 border border-[#CFEAE0]/15">
+                <div class="font-extrabold text-white text-sm">Operasional Job Fair</div>
+                <p class="text-white/80 mt-0.5">Koordinasi lapangan, kelancaran alur peserta, serta dokumentasi kegiatan acara bursa kerja.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-[#131B2B]/55 border border-[#CFEAE0]/15">
+                <div class="font-extrabold text-white text-sm">13 Tab DB Otomatis</div>
+                <p class="text-white/80 mt-0.5">Chatbot AI terhubung DB_Fitalenta_V2 dengan konfirmasi YA/BATAL, fail-safe, audit log, dan panduan handover.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+            <div class="p-3.5 rounded-2xl bg-[#2F4A63]/25 border border-[#CFEAE0]/15">
+              <div class="font-bold mb-1" style="color: var(--accent-text);">Konten &amp; Desain</div>
+              <p class="text-white/80">Audit Sosmed, Content Plan, Copywriting, Canva, CapCut</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-[#2F4A63]/25 border border-[#CFEAE0]/15">
+              <div class="font-bold mb-1" style="color: var(--accent-text);">Event Operations</div>
+              <p class="text-white/80">Kepanitiaan Job Fair, Koordinasi Lapangan, Dokumentasi</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-[#2F4A63]/25 border border-[#CFEAE0]/15">
+              <div class="font-bold mb-1" style="color: var(--accent-text);">AI &amp; Otomatisasi</div>
+              <p class="text-white/80">Workflow Automation (n8n), Prompt Engineering, Google Sheets DB</p>
+            </div>
+          </div>
+          <div class="pt-3 flex flex-wrap gap-3">
+            <a href="./docs/CV-Muhamad-Thariq.pdf" target="_blank" rel="noopener noreferrer" class="pressable inline-block bg-[#CFEAE0] text-[#131B2B] font-bold text-xs px-5 py-3 rounded-full hover:bg-white">
+              Buka / Unduh CV (PDF)
+            </a>
+            <button onclick="openModal('maintenance')" class="pressable inline-block glass-pill text-[#CFEAE0] font-bold text-xs px-5 py-3 rounded-full hover:bg-[#5B91A3]/35 cursor-pointer">
+              Lihat Penutup Maintenance
+            </button>
+            <a href="mailto:thariqpratama56321@gmail.com" class="pressable inline-block glass-pill text-white font-bold text-xs px-5 py-3 rounded-full hover:bg-[#5B91A3]/35">
+              Hubungi via Email
+            </a>
+          </div>
+        `;
+      }
+
+      showAnimatedModal(modal);
+    }
+
+    function closeModal() {
+      hideAnimatedModal(document.getElementById('detail-modal'));
+    }
+
+    renderSlide();
+    triggerStagger();
+  </script>
+</body>
+</html>
